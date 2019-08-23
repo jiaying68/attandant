@@ -2,24 +2,25 @@
   <div id="app">
     <div id="topMenu">
       <el-menu
-      :default-active="activeIndex"
-      :router= true
-      class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#504373"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-        <el-menu-item :index="1" class="helloLyrics">你好， {{userName}}</el-menu-item>
-        <div class="menus">
-          <div class="blockDiv" v-for="item in menus">
-          <el-menu-item :index="item.key" :route="item.url">{{item.name}}</el-menu-item>
+        :default-active="activeIndex"
+        :router=true
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="#504373"
+        text-color="#fff"
+        active-text-color="#ffd04b">
+          <el-menu-item index="1" class="helloLyrics" >你好， {{userName}}</el-menu-item>
+            <!-- <el-menu-item index="2"><router-link to="/Index">我的考勤</router-link></el-menu-item>
+            <el-menu-item index="3"><router-link to="/Employe">员工考勤</router-link></el-menu-item>
+            <el-menu-item index="4"><router-link to="/setAuth">权限设置</router-link></el-menu-item> -->
+          <div class="menus">
+            <div class="blockDiv" v-for="item in menus">
+            <el-menu-item :index="item.val" :route="item.url">{{item.name}}</el-menu-item>
+            </div>
           </div>
-        </div>
-        
-          <!-- <el-menu-item index="5" route="/Login" style="float:right;">退出</el-menu-item> -->
-      </el-menu>
-      <router-link to="/Login" id="logOut"><el-button type="primary">主要按钮退出</el-button></router-link>
+            <el-menu-item index="10" style="float:right;"><router-link to="/Login">退出</router-link></el-menu-item>
+        </el-menu>
     </div>
     
     <router-view/>
@@ -31,23 +32,23 @@ export default {
   name: 'App',
   data(){
     return{
-        activeIndex: "/Mine",
+        activeIndex: "2",
         userName:"管理员",
-        currentMenu:"/Mine",
+        currentMenu:'',
         menus:[
           {
             name:"我的考勤",
-            key:"2",
+            val:"2",
             url:"/Mine"
           },
           {
             name:"员工考勤",
-            key:"3",
+            val:"3",
             url:"/Employee",
           },
           {
             name:"权限设置",
-            key:"4",
+            val:"4",
             url:"/setAuth"
           }
           // ,
