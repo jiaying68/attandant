@@ -19,7 +19,7 @@
             <el-menu-item :index="item.val" :route="item.url">{{item.name}}</el-menu-item>
             </div>
           </div>
-            <el-menu-item index="10" style="float:right;"><router-link to="/Login">退出</router-link></el-menu-item>
+            <el-menu-item index="Login" route="/Login" style="float:right;">退出</el-menu-item>
         </el-menu>
     </div>
     

@@ -5,7 +5,8 @@
                      @changeMonth="changeMonth" 
                      @eventClick="eventClick" 
                      @dayClick="dayClick" 
-                     @moreClick="moreClick"></full-calendar>
+                     @moreClick="moreClick"
+                     lang="zh"></full-calendar>
 </div>
 </template>
 <script>
@@ -13,7 +14,59 @@ import { FullCalendar } from 'vue-fullcalendar'
 export default {
   data() {
       return {
-        monthData: []
+        monthData: [
+          {
+
+            title  : 'sometime',
+            start  : '2019-08-24T12:30:00',
+            allDay : false,
+            cssClass:['test1'],
+          },
+          {
+            title  : 'sometime',
+            start  : '2019-08-24T12:30:00',
+            allDay : false,
+            cssClass:['test1'],
+          },
+          {
+            title  : 'sometime',
+            start  : '2019-08-24T12:30:00',
+            allDay : false,
+            cssClass:['test1']
+          },
+          {
+            title  : 'sometime',
+            start  : '2019-08-24T12:30:00',
+            allDay : false,
+            cssClass:['test1'],
+          },
+          {
+            title  : 'notAllDay',
+            start  : '2019-08-22T12:30:00',
+            allDay : false,
+            cssClass:['test1'],
+          },
+          {
+            title  : 'AllDay',
+            start  : '2019-08-22T12:30:00',
+            allDay : true,
+            cssClass:['test1'],
+          },
+          {
+            title  : 'editable',
+            start  : '2019-08-20T12:30:00',
+            allDay : true,
+            backgroundColor: 'white',
+            cssClass:['test1'],
+          },
+          {
+
+            title  : 'severalDays',
+            start  : '2019-08-22',
+            end : '2019-09-01',
+            cssClass : ['family', 'career']
+          }
+        ]
       }
   },
   methods: {
@@ -39,3 +92,17 @@ export default {
   }
 }
 </script>
+
+<style>
+.career{
+  background-color:orange!important;
+}
+
+.family{
+  color:red!important;
+}
+.test1{
+  background-color:navy!important;
+  color:white!important;
+}
+</style>
