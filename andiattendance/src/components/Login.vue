@@ -1,7 +1,8 @@
 <template>
   <div class="login" id="loginDiv">
+    <img src="@/assets/logo.png" class="logo">
     <div id="loginContainer">
-      <img src="@/assets/logo.png" class="logo">
+      <h1 class="title">考勤管理系统</h1>
       <el-input
         placeholder="用户名"
         v-model="username"
@@ -40,9 +41,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -50,9 +48,6 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 
 .login{
@@ -68,6 +63,10 @@ a {
 
 .logo{
   opacity:0.6;
+  position: absolute;
+  width: 10%;
+  left: 3%;
+  top: 3%;
 }
 
 #loginBtn{
@@ -82,5 +81,9 @@ a {
 #loginContainer{
   display: table-cell;
   vertical-align: middle;
+}
+
+.title{
+  color:#ccc;
 }
 </style>
