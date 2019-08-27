@@ -1,160 +1,77 @@
 <template>
-    <div class="login" id="indexDiv">
-        <template>
-            <el-table
-            :data="tableData"
-            border
-            stripe
-            style="width: 100%">
-            <el-table-column
-                prop="date"
-                label="日期"
-                width="250">
-            </el-table-column>
-            <el-table-column
-                prop="gotoWork"
-                label="上班时间"
-                width="280">
-            </el-table-column>
-            <el-table-column
-                prop="offWork"
-                label="下班时间"
-                width="280">
-            </el-table-column>
-            <el-table-column
-                prop="workTime"
-                label="工时"
-                width="250">
-            </el-table-column>
-            <el-table-column
-                prop="restTime"
-                label="调休工时（剩余/总工时）"
-                width="280">
-            </el-table-column>
-            <el-table-column
-                prop="bonusTime"
-                label="餐补次数"
-                width="280">
-            </el-table-column>
-            <el-table-column
-                prop="bonus"
-                label="餐补（剩余/总餐补）"
-                width="280">
-            </el-table-column>
-            </el-table>
-        </template>
+    <div>
+        <!-- <template> -->
+        <full-calendar
+            id="myCalendar"
+            ref="calendar"
+            :config = "config"
+            :events = "events"
+            locale="fr" 
+            @event-selected = "eventClick"
+            @day-click = "dayClick">
+        </full-calendar>
+        <!-- </template> -->
     </div>
 </template>
 
 <script>
+import {FullCalendar} from 'vue-full-calendar'
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {       
-        tableData: [{
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
-        }, {
-            date:'2016-05-02',
-            gotoWork:'09：30',
-            offWork:'21：30',
-            workTime:'10.5',
-            restTime:'1.5/2.5',
-            bonusTime:1,
-            bonus:20
+    name: 'HelloWorld',
+    data () 
+    {
+    return {      
+
+        config:{
+            firstDay:'1',//第一天是周几
+            weekends:true,
+            weekMode:'liquid',
+            // weekNumbers:true,//显示是一年中的第几周
+            locale:'zh-cn',
+            defaultView:'month',
+
+            selectable: true,
+            // selectMirror:true,
+
+            height:'auto',
+            // contentHeight:'1000',
+            fixedWeekCount:true,
+            // handleWindowResize:true,//是否随浏览器窗口大小变化
+            allDaySlot:false,
+            header:{
+                left:'prevYear,nextYear,today',
+                center:'prev title next',
+                right:'custom'
+            },
+            dragOpacity:0.1
+        },
+        events:[{
+            id:1,
+            title:'出差',
+            start:'2019-08-23',
+            end:'2019-08-27',
+            className:'aaa'
+        },
+        {
+            id:2,
+            title:'春',
+            start:'2019-08-26',
+            backgroundColor:'orange',
+            editable:true,
         }]
-    }
-  },
+        }
+    },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
+        eventClick(event){
+          console.log('点击了'+event);
+        },
+        dayClick(date,jsEvent,view){
+          console.log(date);
+        }
+    },
+    components: {
+        FullCalendar,
+  }
 }
 </script>
 
@@ -168,4 +85,10 @@ export default {
         width: 200px;
         text-align: left;
     }
+</style>
+<style>
+ #myCalendar{
+    width:80%;
+    margin:auto;
+ }
 </style>

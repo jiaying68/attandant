@@ -10,7 +10,7 @@
         background-color="#504373"
         text-color="#fff"
         active-text-color="#ffd04b">
-          <el-menu-item index="1" class="helloLyrics" >你好， {{userName}}</el-menu-item>
+          <el-menu-item index="1" route="/Profile" class="helloLyrics" >你好， {{userName}}</el-menu-item>
             <!-- <el-menu-item index="2"><router-link to="/Index">我的考勤</router-link></el-menu-item>
             <el-menu-item index="3"><router-link to="/Employe">员工考勤</router-link></el-menu-item>
             <el-menu-item index="4"><router-link to="/setAuth">权限设置</router-link></el-menu-item> -->
@@ -19,7 +19,9 @@
             <el-menu-item :index="item.val" :route="item.url">{{item.name}}</el-menu-item>
             </div>
           </div>
-            <el-menu-item index="Login" route="/Login" style="float:right;">退出</el-menu-item>
+            <router-link to="/Login" style="float:right;">
+              <el-button id="logout" @click="logout">退出</el-button>
+            </router-link>
         </el-menu>
     </div>
     
@@ -47,9 +49,19 @@ export default {
             url:"/Employee",
           },
           {
-            name:"权限设置",
+            name:"人员及权限",
             val:"4",
-            url:"/setAuth"
+            url:"/employeeManage"
+          },
+          {
+            name:"操作日志",
+            val:"5",
+            url:"/Diary"
+          },
+          {
+            name:"考勤统计",
+            val:"6",
+            url:"/Statistic"
           }
           // ,
           // {
@@ -127,15 +139,11 @@ a{
   float: left;
 }
 
-#logOut{
-    position: absolute;
-    right: 30px;
-    top: 10px;
-}
-
-#logOut > button{
+#logout{
     background:none;
     border:none;
+    color:white;
+    line-height:2;
 }
 </style>
 <style lang="scss">

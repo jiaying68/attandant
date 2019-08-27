@@ -15,6 +15,9 @@
         clearable
         class = "loginInput" id="mypwd">
       </el-input>
+      <el-row class="forgetRow">
+        <el-button type="primary" class="forgetPass">忘记密码</el-button>
+      </el-row>
 
       <router-link to="/Mine">
         <el-button type="info" round id="loginBtn">登录</el-button>
@@ -81,9 +84,22 @@ li {
 #loginContainer{
   display: table-cell;
   vertical-align: middle;
+  position:relative;
 }
 
 .title{
   color:#ccc;
+}
+
+.forgetRow{
+  margin-top:30px;
+}
+
+.forgetPass{
+  position:absolute;
+  left:38%;
+  background:none;
+  border:none;
+  color:#999;
 }
 </style>

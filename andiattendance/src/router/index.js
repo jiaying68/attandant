@@ -4,7 +4,10 @@ import Login from '@/components/Login'
 import Layout from '@/components/Layout'
 import Mine from '@/components/Mine'
 import Employee from '@/components/Employee'
-import setAuth from '@/components/setAuth'
+import employeeManage from '@/components/employeeManage'
+import Profile from '@/components/Profile'
+import Diary from '@/components/Diary'
+import Statistic from '@/components/Statistic'
 
 Vue.use(Router)
 
@@ -34,8 +37,20 @@ export default new Router({
             component: Login
         },
         {
-            path: '/setAuth',
-            component: setAuth
+            path: '/employeeManage',
+            component: employeeManage
+        },
+        {
+            path: '/Profile',
+            component: Profile
+        },
+        {
+            path: '/Diary',
+            component: Diary
+        },
+        {
+            path: '/Statistic',
+            component: Statistic
         }
     ]
 })
