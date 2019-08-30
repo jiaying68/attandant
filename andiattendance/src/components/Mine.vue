@@ -1,7 +1,9 @@
 <template>
     <div id="mine">
         <!-- <template> -->
-        <el-row><el-button type="primary" @click="changeToMonth">主要按钮</el-button></el-row>
+        <el-row>
+            
+        </el-row>
         <full-calendar
             id="myCalendar"
             ref="calendar"
@@ -45,7 +47,7 @@ export default {
             header:{
                 left:'prevYear,nextYear,today',
                 center:'prev title next',
-                right:'custom'
+                right:'month,week,agendaday'
             },
             dragOpacity:0.1,
             navLinks: true,
@@ -79,12 +81,12 @@ export default {
             alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
             alert('Current view: ' + view.name);
         },
-        changeDate(){
-            this.$refs.calendar.fireMethod('gotoDate',this.selectDate)
-        },
-        changeToMonth(){
-            fullCalendar('changeView','month')
-        }
+        // changeDate(){
+        //     this.$refs.calendar.fireMethod('gotoDate',this.selectDate)
+        // },
+        // changeToMonth(){
+        //     fullCalendar('changeView','month')
+        // }
     },
     components: {
         FullCalendar,
