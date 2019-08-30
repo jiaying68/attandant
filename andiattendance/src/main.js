@@ -7,10 +7,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import FullCalendar from 'vue-full-calendar'
 import 'fullcalendar/dist/fullcalendar.css'
+import jquery from 'jquery'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(FullCalendar)
+Vue.use(jquery)
 
 /* eslint-disable no-new */
 new Vue({

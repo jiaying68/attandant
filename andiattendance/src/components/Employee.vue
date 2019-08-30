@@ -1,25 +1,36 @@
 
 <template>
-    <div class="login" id="indexDiv">
+    <div class="login" id="employee">
+        <el-row>
+            <el-col :span="3" class="leftTree">
+                <el-input
+                  placeholder="输入关键字进行过滤"
+                  v-model="filterText">
+                </el-input>
 
-        <el-tree
-            :data="data2"
-            default-expand-all
-            node-key="id"
-            ref="tree"
-            highlight-current
-            :props="defaultProps"
-            @node-click="showMe">
-        </el-tree>
-        <full-calendar
-            id="myCalendar"
-            ref="calendar"
-            :config = "config"
-            :events = "events"
-            locale="fr" 
-            @event-selected = "eventClick"
-            @day-click = "dayClick">
-        </full-calendar>
+                <el-tree
+                    :data="data2"
+                    default-expand-all
+                    :filter-node-method="filterNode"
+                    node-key="id"
+                    ref="tree2"
+                    highlight-current
+                    :props="defaultProps"
+                    @node-click="showMe">
+                </el-tree>
+            </el-col>
+            <el-col :span="20">
+                <full-calendar
+                    id="myCalendar"
+                    ref="calendar"
+                    :config = "config"
+                    :events = "events"
+                    locale="fr" 
+                    @event-selected = "eventClick"
+                    @day-click = "dayClick">
+                </full-calendar>
+            </el-col>
+        </el-row>
 </div>
 </template>
 
@@ -30,7 +41,7 @@ export default {
     data () 
     {
         return {      
-
+            defaultProps:'',
             config:
             {
                 firstDay:'1',//第一天是周几
@@ -55,6 +66,7 @@ export default {
                 },
                 dragOpacity:0.1
             },
+            //表格里的东西
             events:[{
                 id:1,
                 title:'出差',
@@ -69,62 +81,66 @@ export default {
                 backgroundColor:'orange',
                 editable:true,
             }],
-
+            //表格里的东西
+            //树形结构里的东西
             data2: [{
                 id: 1,
                 label: '软件部',
-                children: [{
-                id: 4,
-                label: '开发组',
-                children: [{
-                    id: 9,
-                    label: 'E系列',
+                children: 
+                [{
+                    id: 4,
+                    label: '开发组',
                     children: [{
-                      id: 11,
-                      label: '李攀'
-                    }, {
-                      id: 12,
-                      label: '黄道坤'
-                    }]
-                }, 
-                {
-                    id: 10,
-                    label: 'D系列',
-                    children: [{
-                      id: 13,
-                      label: '周鑫'
-                    }, {
-                      id: 14,
-                      label: '何佳颖'
+                        id: 9,
+                        label: 'E系列',
+                        children: [{
+                          id: 11,
+                          label: '李攀'
+                        }, {
+                          id: 12,
+                          label: '黄道坤'
+                        }]
+                    }, 
+                    {
+                        id: 10,
+                        label: 'D系列',
+                        children: [{
+                          id: 13,
+                          label: '周鑫'
+                        }, {
+                          id: 14,
+                          label: '何佳颖'
+                        }]
                     }]
                 }]
-            }]
-        }, 
-        {
-          id: 2,
-          label: '硬件部',
-          children: 
-          [{
-            id: 5,
-            label: '研发组'}, 
+            }, 
             {
-                id: 6,
-                label: '逻辑组'
+              id: 2,
+              label: '硬件部',
+              children: 
+              [{
+                id: 5,
+                label: '研发组'}, 
+                {
+                    id: 6,
+                    label: '逻辑组'
+                }]
+            }, 
+            {
+              id: 3,
+              label: '综合部',
+              children: [{
+                id: 7,
+                label: '财务组'
+            }, 
+            {
+                id: 8,
+                label: '后勤组'
             }]
-        }, 
-        {
-          id: 3,
-          label: '综合部',
-          children: [{
-            id: 7,
-            label: '财务组'
-        }, 
-        {
-            id: 8,
-            label: '后勤组'
-        }]
-    }]
-}
+    }],
+    filterText:''
+    //树形结构里的东西
+    }
 },
 methods: {
     eventClick(event){
@@ -132,38 +148,36 @@ methods: {
   },
   dayClick(date,jsEvent,view){
       console.log(date);
+  },
+  showMe(){
+    console.log(this);
+  },
+    filterNode(value, data) {
+    if (!value) return true;
+    return data.label.indexOf(value) !== -1;
   }
 },
 components: {
     FullCalendar,
-}
+},
+    watch: {
+      filterText(val) {
+        this.$refs.tree2.filter(val);
+      }
+    },
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a{
-    text-decoration: none;
-}
-
-.helloLyrics{
-    width: 200px;
-    text-align: left;
-}
-
-.container{
-    position: relative;
-}
-
-.el-tree{
-    display: inline-block;
-    position: absolute;
-    top:0px;
-    left:0px;
-    width: 10%;
-}
-
-#indexDiv{
+#employee{
     position:relative;
+    .el-input{
+        margin-bottom:10px;
+    }
+    .el-input__inner{
+        height: 34px;
+    }
 }
 </style>

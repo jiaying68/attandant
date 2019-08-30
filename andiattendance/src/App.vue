@@ -19,9 +19,9 @@
             <el-menu-item :index="item.val" :route="item.url">{{item.name}}</el-menu-item>
             </div>
           </div>
-            <router-link to="/Login" style="float:right;">
+            <!-- <router-link to="/Login" style="float:right;"> -->
               <el-button id="logout" @click="logout">退出</el-button>
-            </router-link>
+            <!-- </router-link> -->
         </el-menu>
     </div>
     
@@ -48,11 +48,11 @@ export default {
             val:"3",
             url:"/Employee",
           },
-          {
-            name:"人员及权限",
-            val:"4",
-            url:"/employeeManage"
-          },
+          // {
+          //   name:"人员及权限",
+          //   val:"4",
+          //   url:"/employeeManage"
+          // },
           {
             name:"操作日志",
             val:"5",
@@ -70,12 +70,18 @@ export default {
           //   url:"/Login"
           // }
         ]
-    }
+    };
   },
   methods: {
     handleSelect(key, keyPath) {
       this.currentMenu = key;
       return;
+    },
+    logout(){
+      this.$router.push({
+        path:'/Login'
+      })
+      
     }
 
   },
@@ -89,6 +95,10 @@ export default {
           path:'/Login'
       })
     }
+  },
+
+  created(){
+
   }
 }
 </script>
@@ -144,6 +154,80 @@ a{
     border:none;
     color:white;
     line-height:2;
+    float:right;
+    margin: 4px 30px 0px 0px;
+}
+#Profile{
+  .centerForm {
+    margin-top:6%;
+    text-align:left;
+  }
+
+  .reset{
+      float: right;
+      width: 40%;
+  }
+}
+
+.el-button--primary{
+  background-color:#504373;
+  border-color:#504373;
+  margin-left:20px;   
+}
+
+.el-button--primary:hover{
+  background-color:#8f7fb9;
+  border-color:#8f7fb9;
+}
+
+
+
+#employee{
+  margin-top:10px;
+    .el-input{
+        margin-bottom:10px;
+    }
+    .leftTree{
+        margin-right: 10px;
+    }
+}
+
+#mine{
+  margin-top:10px;
+}
+
+
+.leftTree{
+    margin-right: 10px;
+}
+
+
+#diary{
+  #searchInput{
+    display:inline-block!important;
+    width:20%!important;
+    width:300px;
+  }
+
+  #search{
+    float:left;
+    margin-left:20px;   
+  }
+}
+.controlBar{
+  background-color:lightSteelblue;
+  padding:10px;
+  margin-left: 0px!important;
+  margin-right:0px!important;
+  text-align:left;
+}
+#statistic{
+  .el-col-20{
+    width:calc(87.5% - 10px);
+  }
+  .leftTree{
+      margin-top: 10px;
+  }
 }
 </style>
 <style lang="scss">

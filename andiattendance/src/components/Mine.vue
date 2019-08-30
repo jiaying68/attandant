@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <div id="mine">
         <!-- <template> -->
+        <el-row><el-button type="primary" @click="changeToMonth">主要按钮</el-button></el-row>
         <full-calendar
             id="myCalendar"
             ref="calendar"
@@ -16,6 +17,7 @@
 
 <script>
 import {FullCalendar} from 'vue-full-calendar'
+import {jquery} from 'jquery'
 export default {
     name: 'HelloWorld',
     data () 
@@ -25,25 +27,30 @@ export default {
         config:{
             firstDay:'1',//第一天是周几
             weekends:true,
-            weekMode:'liquid',
+            // weekMode:'liquid',//unknown
             // weekNumbers:true,//显示是一年中的第几周
+            fixedWeekCount:false,
             locale:'zh-cn',
             defaultView:'month',
 
             selectable: true,
             // selectMirror:true,
 
-            height:'auto',
+            // height:'auto',
             // contentHeight:'1000',
-            fixedWeekCount:true,
+            // fixedWeekCount:true,
             // handleWindowResize:true,//是否随浏览器窗口大小变化
             allDaySlot:false,
+            // allDay:true,
             header:{
                 left:'prevYear,nextYear,today',
                 center:'prev title next',
                 right:'custom'
             },
-            dragOpacity:0.1
+            dragOpacity:0.1,
+            navLinks: true,
+            weekNumbers:true
+            // visStart="2019-08-25"
         },
         events:[{
             id:1,
@@ -63,14 +70,26 @@ export default {
     },
     methods: {
         eventClick(event){
-          console.log('点击了'+event);
+            alert('Event: ' + calEvent.title);
+            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            alert('View: ' + view.name);
         },
         dayClick(date,jsEvent,view){
-          console.log(date);
+            alert('Clicked on: ' + date.format());
+            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            alert('Current view: ' + view.name);
+        },
+        changeDate(){
+            this.$refs.calendar.fireMethod('gotoDate',this.selectDate)
+        },
+        changeToMonth(){
+            fullCalendar('changeView','month')
         }
     },
     components: {
         FullCalendar,
+  },
+  mounted(){
   }
 }
 </script>
@@ -87,8 +106,8 @@ export default {
     }
 </style>
 <style>
- #myCalendar{
-    width:80%;
+#mine #myCalendar{
+    width:90%;
     margin:auto;
  }
 </style>
